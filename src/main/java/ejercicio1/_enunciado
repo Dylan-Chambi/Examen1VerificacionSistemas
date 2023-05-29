@@ -1,0 +1,7 @@
+Se quiere implementar un método que dado 3 parámetros dia, mes, gestion devuelva
+la fecha siguiente en formato texto
+ejemplo:
+nextDay(dia, mes, año) - retorne --> text
+31 12 2023 -------> “01/01/2024 ”
+o
+31 Diciembre 2023 -------> “01/Enero/2024 ”
