@@ -1,11 +1,11 @@
 package ejercicio3;
 
 public class AerolineaServiceStatic {
-    public boolean existenPasajes(String destino, int cantidad){
+    public static boolean existenPasajes(String destino, int cantidad){
         return false;
     }
 
-    public String getDay(int dia, int mes, int gestion){
+    public static String getDay(int dia, int mes, int gestion){
         return "";
     }
 }

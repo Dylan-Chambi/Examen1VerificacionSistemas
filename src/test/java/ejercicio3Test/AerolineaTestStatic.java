@@ -1,8 +1,8 @@
 package ejercicio3Test;
 
-import ejercicio2.Aerolinea;
-import ejercicio2.AerolineaService;
 import ejercicio3.AerolineaServiceStatic;
+import ejercicio3.AerolineaStatic;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,11 +15,16 @@ public class AerolineaTestStatic {
 
     @BeforeEach
     public void setup(){
+        overrideAerolineaServiceStatic = Mockito.mockStatic(AerolineaServiceStatic.class);
 
-        Mockito.when(overrideAerolineaServiceStatic.existenPasajes("La Paz", 2)).thenReturn(true);
-        Mockito.when(overrideAerolineaServiceStatic.existenPasajes("Cochabamba", 2)).thenReturn(false);
+        overrideAerolineaServiceStatic.when(() -> AerolineaServiceStatic.existenPasajes("La Paz", 2)).thenReturn(true);
+        overrideAerolineaServiceStatic.when(() -> AerolineaServiceStatic.existenPasajes("Cochabamba", 2)).thenReturn(false);
 
-        Mockito.when(overrideAerolineaServiceStatic.getDay(29, 5, 2023)).thenReturn("Lunes 29 Mayo 2023");
+        overrideAerolineaServiceStatic.when(() -> AerolineaServiceStatic.getDay(29, 5, 2023)).thenReturn("Lunes 29 Mayo 2023");
+    }
+    @AfterEach
+    public void cleanup(){
+        overrideAerolineaServiceStatic.close();
     }
 
     @ParameterizedTest
@@ -27,13 +32,13 @@ public class AerolineaTestStatic {
             "La Paz, 2, 29, 5, 2023, el dia Lunes 29 Mayo 2023 existen 2 pasajes para La Paz"
     })
     public void verifyReservaVueloExists(String destinoTest, int nroPasajesTest, int diaTest, int mesTest, int anioTest, String expectedResult) {
-        Aerolinea aerolinea = new Aerolinea(overrideAerolineaServiceStatic);
+        AerolineaStatic aerolineaStatic = new AerolineaStatic();
 
-        String actualResult = aerolinea.reservaVuelo(destinoTest, nroPasajesTest, diaTest, mesTest, anioTest);
+        String actualResult = aerolineaStatic.reservaVuelo(destinoTest, nroPasajesTest, diaTest, mesTest, anioTest);
         Assertions.assertEquals(expectedResult, actualResult);
 
-        Mockito.verify(overrideAerolineaServiceStatic).getDay(diaTest, mesTest, anioTest);
-        Mockito.verify(overrideAerolineaServiceStatic).existenPasajes(destinoTest, nroPasajesTest);
+        overrideAerolineaServiceStatic.verify(() -> AerolineaServiceStatic.getDay(diaTest, mesTest, anioTest));
+        overrideAerolineaServiceStatic.verify(() -> AerolineaServiceStatic.existenPasajes(destinoTest, nroPasajesTest));
     }
 
     @ParameterizedTest
@@ -41,11 +46,11 @@ public class AerolineaTestStatic {
             "Cochabamba, 2, 30, 12, 2024, no existen suficientes pasajes para Cochabamba"
     })
     public void verifyReservaVueloNotExists(String destinoTest, int nroPasajesTest, int diaTest, int mesTest, int anioTest, String expectedResult) {
-        Aerolinea aerolinea = new Aerolinea(overrideAerolineaServiceStatic);
+        AerolineaStatic aerolineaStatic = new AerolineaStatic();
 
-        String actualResult = aerolinea.reservaVuelo(destinoTest, nroPasajesTest, diaTest, mesTest, anioTest);
+        String actualResult = aerolineaStatic.reservaVuelo(destinoTest, nroPasajesTest, diaTest, mesTest, anioTest);
         Assertions.assertEquals(expectedResult, actualResult);
 
-        Mockito.verify(overrideAerolineaServiceStatic).existenPasajes(destinoTest, nroPasajesTest);
+        overrideAerolineaServiceStatic.verify(() -> AerolineaServiceStatic.existenPasajes(destinoTest, nroPasajesTest));
     }
 }

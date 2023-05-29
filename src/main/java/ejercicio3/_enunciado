@@ -1,3 +1,5 @@
+Hacer de forma ESTATICA
+
 Se tiene una aerolínea de reserva de vuelos, se requiere implementar un método
 (reservaVuelo) que nos diga si la cantidad de boletos requeridos estan disponibles o no con
 un mensaje descriptivo
