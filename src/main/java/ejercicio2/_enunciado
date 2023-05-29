@@ -1,0 +1,25 @@
+Se tiene una aerolínea de reserva de vuelos, se requiere implementar un método
+(reservaVuelo) que nos diga si la cantidad de boletos requeridos estan disponibles o no con
+un mensaje descriptivo
+cuando se utiliza este metodo se requiere enviar 4 parametros de tipo: String, int, int, int
+donde se debe enviar destino, dia, mes y gestion respectivamente y el metodo nos debe
+retornar una cadena si existen los pasajes:
+“ el dia DIA_FECHA existen NUMERO_PASAJE pasajes para DESTINO”
+en el caso que no existan debe retornar
+“no existen suficientes pasajes para DESTINO”
+consideraciones
+● existe un metodo existenPasajes(destino, cantidad) y este retorna verdadero o falso
+● existe otro metodo donde convierte la fecha dada al dia que corresponde:
+getDay(dia, mes, gestion) y este retorna el dia de la semana que corresponde:
+Lunes, Martes, Miercoles, Jueves, Viernes, Sabado,Domingo
+● el metodo reservaVuelo debe manejar estos metodos internamente (existePasajes y
+getDay) para poder desplegar el mensaje de forma facil
+● el cambio de información del mes de tipo int a string debe ser manejado en el
+metodo reservaVuelo.
+ejemplos:
+input: La Paz, 2 , 29 , 5 , 2023
+- si existe 2 pasajes a La Paz
+output: “el dia Lunes 29 Mayo 2023 existen 2 pasajes para La Paz”
+- si no existen 2 pasajes a La Paz
+-
+output: “no existen suficientes pasajes para La Paz”
