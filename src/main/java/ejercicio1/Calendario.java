@@ -19,7 +19,7 @@ public class Calendario {
         Date newDate = newDateTime.toDate();
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
 
-        if(anio == 0 && mes != 12 && anio != 31){
+        if(anio == 0 && mes != 12 && dia != 31){
             String[] date = dateFormat.format(newDate).split("/");
             return date[0] + "/" + date[1] + "/0000";
         }

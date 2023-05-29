@@ -15,6 +15,10 @@ public class CalendarioTest {
             "31,12,0,01/01/0001",
             "2,1,1,03/01/0001",
             "14,4,2,15/04/0002",
+            "1,1,5,02/01/0005",
+            "28,2,999,01/03/0999",
+            "15,8,1000,16/08/1000",
+            "27,11,1001,28/11/1001",
             "31,12,2023,01/01/2024",
             "28,2,2023,01/03/2023",
             "30,4,3000,01/05/3000",
@@ -32,7 +36,10 @@ public class CalendarioTest {
             "31,15,-1",
             "40,2,2020",
             "0,0,0",
-            "12,20,2000"
+            "12,20,2000",
+            "32,1,2022",
+            "12,13,2002",
+            "-12,-12,-2005"
     })
     public void verifyNextDayNegative(int dia, int mes, int anio){
         Assertions.assertThrows(Exception.class, () -> calendario.nextDay(dia, mes, anio));
